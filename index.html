@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            margin: 20; /* Loại bỏ margin mặc định */
+            padding: 20; /* Loại bỏ padding mặc định */
+        }
+        .container {
+            max-width: 1600px; /* Chiều rộng tối đa của nội dung */
+            margin: 0 auto; /* Căn giữa nội dung với lề hai bên */
+            padding: 20px; /* Khoảng cách bên trong nội dung */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
+        }
+
+        .banner {
+            background-image: url('anh33.jpg');
+    text-align: center;
+    color: rgb(13, 102, 10);
+    padding: 30px 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: contrast(1.2) brightness(1.1);
+    font-family: 'Dancing Script', cursive; /* Áp dụng font chữ hoa mỹ */
+    font-size: 1.5em; /* Kích thước font chữ lớn */
+    font-weight: bold; /* Chữ đậm */
+    text-transform: uppercase; /* Chữ in hoa */
+    letter-spacing: 2px; /* Khoảng cách giữa các chữ */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Đổ bóng cho chữ */
+    line-height: 1.4; /* Đặt khoảng cách giữa các dòng */
+        }
+
+        .banner h1 {
+            font-size: 2.5em;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .slogan {
+            padding: 40px;
+            text-align: center;
+            background: #f3ef0e59;
+        }
+
+        .slogan .row {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+        }
+
+        .block_3 {
+            width: 30%;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .block_3:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .block_3 h3 {
+            color: #4CAF50;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .block_3 p {
+            color: #555;
+        }
+
+        .content table {
+            width: 100%;
+            border-spacing: 10px;
+            color: #3498dbbb;
+        }
+
+        .content table td {
+            vertical-align: middle;
+        }
+
+        .content h3 {
+            color: #4CAF50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            color: #333;
+            font-size: 1.1em;
+            background-color: #f0f8ff;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px;
+        }
+
+        img {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .footer .row {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer .block_3 {
+            width: 30%;
+        }
+
+        .footer h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer p {
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #FFC107;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Effect for Registration Link */
+        a h2 {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            background: #FF5722;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        a h2:hover {
+            background: #FF7043;
+            transform: scale(1.1);
+        }
+
+        .custom-button {
+            background-color: teal;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: #005f5f;
+        }
+
+        .custom-button:active {
+            background-color: #004949;
+        }
+
+        .student-list {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .student-list ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        /* Màn hình chờ */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 9999;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .loading-screen h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 0;
+            animation: fadeIn 1s ease-in-out infinite alternate, moveBackground 4s infinite alternate;
+            font-size: 20rem;
+            font-weight: bold;
+            font-family: 'Lobster', cursive;
+            background-image: url("https://images.squarespace-cdn.com/content/v1/56a1a14b05caa7ee9f26f47d/1493284866043-OZR4E2S8SPLY7QVBNKQU/fireworks_display_IS.jpg?format=1500w");
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .loading-screen p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .section-1 {
+            background-color: #3c56e791;
+            border-radius: 20px;
+        }
+
+        .section-2 {
+            background-color: #e74d3cbe;
+            border-radius: 20px;
+        }
+
+        .section-3 {
+            background-color: #2ecc7091;
+            border-radius: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveBackground {
+            0% {
+                background-position: left;
+            }
+            100% {
+                background-position: right;
+            }
+        }
+
+        .clb-vanhoc {
+            background-color: #E3F2FD;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .block_3 {
+                width: 90%;
+                margin: 10px auto;
+            }
+
+            .content table {
+                display: block;
+                width: 100%;
+            }
+
+            .content table td {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .footer .row {
+                flex-direction: column;
+            }
+
+            .footer .block_3 {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        .visible {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .hover-link {
+    text-decoration: none; /* Không gạch chân mặc định */
+    color: rgb(16, 37, 223);
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Hiệu ứng mượt mà */
+}
+
+.hover-link:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <h1>Welcome</h1>
+        <p>Đang tải nội dung, vui lòng đợi...</p>
+    </div>
+    <div class="container"><div class="banner hidden">
+        <h1><b>CLB ngoại khóa</br>
+             trường THPT Than Uyên</b></h1>
+    </div>
+    <div style="text-align: center;" class="hidden">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVl8lrEPDt5xONFvcqTW-UQ5Of3eKK_TxXpgqPD6asbXTQvQ/viewform?usp=dialog">
+            <h2><b>Đăng ký tham gia các CLB của trường THPT Than Uyên</b></h2>
+        </a>
+    </div>
+    <div class="slogan hidden">
+        <div class="row">
+            <div class="block_3">
+                <h3>Năng động</h3>
+                <p class="text-content">Hoạt động năng nổ và hiệu quả</p>
+            </div>
+            <div class="block_3">
+                <h3>Đam mê</h3>
+                <p class="text-content">Cháy hết mình trong các cuộc chơi</p>
+            </div>
+            <div class="block_3">
+                <h3>Tỏa sáng</h3>
+                <p class="text-content">Giành những giải thưởng cao nhất</p>
+            </div>
+        </div>
+    </div>
+    <div class="content hidden">
+        <table>
+            <tr>
+                <td class="section-1">
+                    <h3 style="color:#2e46cc; text-align: center" >CÂU LẠC BỘ VĂN HỌC – KHƠI NGUỒN SÁNG TẠO</h3>
+                    <p> Với mục đích: tạo sân chơi lành mạnh cho các em học sinh trong nhà trường có tình yêu với văn học; tạo cơ hội cho giáo viên, học sinh giao lưu học hỏi, chia sẻ kinh nghiệm, phương pháp; khơi gợi niềm yêu thích và thói quen đọc sách; mở rộng kiến thức sách giáo khoa và trang bị kiến thức chuyên sâu về văn học; đưa môn Văn học trong nhà trường gần gũi với thực tế đời sống từ đó giáo dục các em giá trị sống yêu thương, trách nhiệm, nỗ lực, đoàn kết; nuôi dưỡng và ươm mầm cho các em học sinh có khả năng sáng tác văn học.</p>
+                    <div style="text-align: center; margin-top: 50px;">
+                        <button class="custom-button" id="toggleButton" onclick="toggleList()">Xem thêm</button>
+                        <div class="student-list" id="studentList">
+                            <div class="brief font-size-text mb-10"></div>
+                            <div class="clb-vanhoc">
+                                <h4 style="text-align: left;text-indent: 36pt; font-family: 'Georgia', serif; color: #444; font-size: 16pt; line-height: 1.8;">
+                                    Chiều ngày 16/10/2024, trường THPT Than Uyên tổ chức lễ ra mắt câu lạc bộ văn học năm học 2024 – 2025. Câu lạc bộ thu hút 87 học sinh tham gia. Các em được tham gia các hoạt động sáng tác thơ, văn, làm báo, đọc sách, giao lưu sách. Các hoạt động này góp phần phát hiện, bồi dưỡng học sinh có năng khiếu và đa dạng hóa các hoạt động giáo dục của trường.
+                                </h4>
+                                <h4 style="text-align: center;">
+                                    <img src="2.jpg" width="776" height="436" alt="Câu lạc bộ văn học">
+                                </h4>
+                                <h5 style="text-align: center; font-style: italic; font-family: 'Lobster', cursive; font-size: 14pt; color: #333;">
+                                    Các thầy cô và học sinh của câu lạc bộ
+                                </h5>
+                                <h4 style="text-align: center;">
+                                    <img src="3.png" width="776" height="435" alt="Các thầy cô và học sinh câu lạc bộ">
+                                </h4>
+                                <h5 style="text-align: center; font-style: italic; font-family: 'Lobster', cursive; font-size: 14pt; color: #333;">
+                                    Phát động cuộc thi sáng tác văn học của câu lạc bộ.
+                                </h5>
+                                <h4 style="text-align: left;text-indent: 36pt; font-family: 'Georgia', serif; color: #444; font-size: 16pt; line-height: 1.8;">
+                                    Khơi nguồn sáng tạo, chắp cánh ước mơ cho các thành viên câu lạc bộ là mong muốn cháy bỏng của thầy, trò nhà trường, hứa hẹn thành công và góp phần thúc đẩy hoạt động dạy và học của trường.
+                                </h4>
+                                <h4 style="text-align: center; font-weight: bold; font-family: 'Arial', sans-serif; color: #4CAF50; font-size: 14pt;">
+                                    Người viết: Lê Thị Tuyết
+                                </h4>
+                            </div>
+                        </div>
+                        <script>
+                            function toggleList() {
+                                const studentList = document.getElementById('studentList');
+                                const toggleButton = document.getElementById('toggleButton');
+                                
+                                if (studentList.style.display === 'none' || studentList.style.display === '') {
+                                    studentList.style.display = 'block';
+                                    toggleButton.textContent = 'Hide'; 
+                                } else {
+                                    studentList.style.display = 'none';
+                                    toggleButton.textContent = 'Show More'; 
+                                }
+                            }
+                        </script>
+                    </div>
+                </td>
+                <td>
+                    <img src="https://84864c160d.vws.vegacdn.vn/uploadimages/news/2024/thptnguyenhuucanh/2024_1/11/z5061649644259e2d7d3b84b1ea2ff402ba105bde3a8fb_1112024236.jpg?w=400" width="100%" height="50%">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/312929760_1795140940818953_3370166688898816501_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=4NSO8lxf4DAQ7kNvgFGvnCA&_nc_oc=Adgqd5PobwFVjmuAqMNSgLFbQo2qA9xnZqEL8-i4uyl1XGK_YCErwfbcgcF45bIv2hw&_nc_zt=23&_nc_ht=scontent.fhan4-3.fna&_nc_gid=ASHO7giF2JhMxt3lPMrkUbI&oh=00_AYAn_ihEb1kP5N75JPpJnGZ20EENcGgiYq9_ETb1q9RrCQ&oe=6772F6C3" width="100%">
+                </td>
+                <td class="section-2">
+                    <h3 style=" text-align: center">
+                        <a href="thethao.html" style=" color: rgb(16, 37, 223);" class="hover-link">CLB - Thể thao</a>
+                    </h3>
+                    <p>Câu lạc bộ Thể thao của trường là nơi khơi nguồn đam mê và phát triển tài năng thể thao của học sinh.
+                        Với nhiều bộ môn như bóng đá, bóng chuyền, cầu lông, và bơi lội, CLB mang đến cơ hội rèn luyện thể chất và nâng cao tinh thần đồng đội.
+                        Hàng năm, CLB tổ chức các giải đấu nội bộ và tham gia thi đấu cấp huyện, tỉnh, đạt nhiều thành tích ấn tượng.
+                        Tham gia CLB Thể thao không chỉ giúp học sinh khỏe mạnh mà còn là dịp để giao lưu và gắn kết với bạn bè.</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="section-3">
+                    <h3 style=" text-align: center"><a href="nghethuat.html" class="hover-link">CLB - Tiếng Anh</a></h3>
+                    <p>Câu lạc bộ Tiếng Anh của trường là nơi để các học sinh giao lưu, học hỏi và rèn luyện kỹ năng ngoại ngữ.
+                        Với môi trường năng động và sáng tạo, CLB thường xuyên tổ chức các buổi trò chuyện, thuyết trình và hội thảo bằng Tiếng Anh.
+                        Các hoạt động như "English Speaking Day" hay "Debate Competition" giúp học sinh tự tin sử dụng Tiếng Anh trong thực tế.
+                        Tham gia CLB Tiếng Anh không chỉ giúp nâng cao trình độ mà còn mở rộng kiến thức về văn hóa thế giới.</p>
+                </td>
+                <td>
+                    <img src="https://aten.edu.vn/wp-content/uploads/2022/04/cau-lac-bo-tieng-anh-cho-nguoi-di-lam-1-1.jpg" width="100%">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer hidden">
+        <div class="row">
+            <div class="block_3">
+                <h3>Liên hệ</h3>
+                <p style="font-size: 18px; font-family: 'Times New Roman', Times, serif">Mọi chi tiết xin liên hệ Bùi Đức Minh <br />
+                    ĐC: 12A1</p>
+            </div>
+            <div class="block_3">
+                <h3>Bản quyền</h3>
+                <p style="font-size: 18px;font-family: 'Times New Roman', Times, serif">Bản quyền thuộc về Bùi Đức Minh<br />
+                   Class: 12A1</p>
+            </div>
+            <div class="block_3">
+                <h3>Liên kết</h3>
+                <p style="font-size: 18px;font-family: 'Times New Roman', Times, serif">
+                    <a href="https://www.facebook.com/profile.php?id=100025591755392">Bùi Đức Minh</a><br />
+                    <a href="https://www.facebook.com/thptthanuyen">Trang trường THPT Than Uyên</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("load", function () {
+            const loadingScreen = document.querySelector(".loading-screen");
+            const contentElements = document.querySelectorAll(".hidden");
+
+            setTimeout(() => {
+                loadingScreen.style.opacity = "0";
+                loadingScreen.style.transition = "opacity 1s";
+                setTimeout(() => {
+                    loadingScreen.style.display = "none";
+
+                    contentElements.forEach((element, index) => {
+                        setTimeout(() => {
+                            element.classList.remove("hidden");
+                            element.classList.add("visible");
+                        }, index * 500);
+                    });
+                }, 1000);
+            }, 3000);
+        });
+    </script>
+    <footer>
+        <p>&copy; 2024 Trang Web Của Tôi. Tất cả quyền được bảo vệ.</p>
+    </footer>
+
+    <script>
+        console.log("Trang web đã sẵn sàng!");
+    </script>
+    </div>
+    </body>
+    </html>
